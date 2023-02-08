@@ -46,10 +46,24 @@ for i in quakes["features"]:
    if i["properties"]["type"] == "earthquake":
       num_quakes += 1
 
-print(f"Total number of earthquakes: {num_quakes}")
+print(f"Total number of earthquakes: {format(num_quakes,',')}")
 print()
 print()
 
+eq_dict = {}
+
 for i in quakes["features"]:
    if i["properties"]["type"] == "earthquake" and i["properties"]["mag"] > 6:
-      pass
+      eq_dict[i["properties"]["place"]] = {'mag':i["properties"]['mag'], 'lon':i["geometry"]['coordinates'][0], 'lat':i["geometry"]['coordinates'][1]}
+
+print(eq_dict)
+print()
+print()
+
+for i, j in eq_dict.items():
+   print(f"Location: {i}")
+   print(f"Magnitude: {j['mag']}")
+   print(f"Longitude: {j['lon']}")
+   print(f"Latitude: {j['lat']}")
+   print()
+   print()
